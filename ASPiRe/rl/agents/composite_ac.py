@@ -478,8 +478,6 @@ class CompositeSAC():
                                 raw_kl=False):
         if self.raw_kl or raw_kl:
             if self.analytic_kl:
-                print(policy_output.distribution)
-                print(priors_output.distributions[0])
                 kl_divs = [
                     torch.distributions.kl_divergence(policy_output.distribution, priors_output.distributions[i])
                     for i in range(self.n_priors)

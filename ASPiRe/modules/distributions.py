@@ -8,7 +8,7 @@ from torch.distributions import Independent as TorchIndependent
 from torch.distributions.utils import _sum_rightmost
 import numpy as np
 from collections import OrderedDict
-import rlkit.torch.pytorch_util as ptu
+# import rlkit.torch.pytorch_util as ptu
 import torch as th
 
 MAX_LOGPROB = 100

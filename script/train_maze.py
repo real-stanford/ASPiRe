@@ -23,21 +23,20 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('-g', type=int, default=0, help="which gpu")
     parser.add_argument('--num_box', type=int, default=5)
-    parser.add_argument('--hit_penalty', type=float, default=0)
+    parser.add_argument('--hit_penalty', type=float, default=-0.05)
     parser.add_argument('--reward_scale', type=float, default=1)
     parser.add_argument('--prior_name', type=str, default=None)
     parser.add_argument('--prior_checkpoint', type=int, default=-1)
-    parser.add_argument('--target_kl', type=float, default=6.0, help='target kl')
-    parser.add_argument('--adv_coef', type=float, default=1.0, help='adv coef')
+    parser.add_argument('--target_kl', type=float, default=18, help='target kl')
     parser.add_argument('--save_freq', type=int, default=5000)
-    parser.add_argument('--max_steps', type=int, default=50)
+    parser.add_argument('--max_steps', type=int, default=1000)
     parser.add_argument('--alpha_scheduler', action='store_true')
     parser.add_argument('--prior_exploration', action='store_true')
     parser.add_argument('--prior_exploration_step', type=int, default=2000)
     parser.add_argument('--temperature', type=float, default=0.1)
     parser.add_argument('--target_entropy', type=float, default=-10)
     parser.add_argument('--normalize', action='store_true')
-    parser.add_argument('--difficulty', type=int, default=1, help="goal/box position")
+    parser.add_argument('--difficulty', type=int, default=2, help="goal/box position")
     parser.add_argument('--exe_prior_index', type=int, default=-1, help="execute prior index")
     parser.add_argument('--update_start', type=int, default=1)
     parser.add_argument('--theta', type=float, default=1, help="theta")
@@ -56,7 +55,7 @@ def main():
     parser.add_argument('--seed', type=int, default=0)
     parser.add_argument('--min_coef', default=1e-3, type=float)
     parser.add_argument('--n_samples', default=20, type=int)
-    parser.add_argument('--max_updates', default=3e4, type=float)
+    parser.add_argument('--max_updates', default=1e4, type=float)
     parser.add_argument('--gamma', default=0.99, type=float)
     parser.add_argument('--max_action_range', default=2, type=float)
     parser.add_argument('--weight_lr', default=3e-4, type=float)
@@ -92,7 +91,7 @@ def main():
         dynamic_maze = False,
 
     pretain_spiral_path = os.path.expanduser(
-        "~/CompositeSkill/CompositeSkill/skill_prior/maze/{0}/checkpoint{1}.pt".format(
+        "~/ASPiRe/skill_prior/maze/{0}/checkpoint{1}.pt".format(
             args.prior_name, args.prior_checkpoint))
     pretain_spiral = torch.load(pretain_spiral_path, map_location=device)
     pretain_spiral.device = device
@@ -105,18 +104,18 @@ def main():
     action_decoder = action_decoder.to(device)
     action_decoder.eval()
 
-    #load pre-train weight inferencer and decoder
-    pre_train_weight_decoder = torch.load(os.path.expanduser(
-        '~/CompositeSkill/CompositeSkill/skill_prior/maze/{0}/weight_decoder_checkpoint{1}.pt'.format(
-            args.prior_name, args.prior_checkpoint)),
-                                          map_location=device)
-    pre_train_weight_decoder.device = device
+    # #load pre-train weight inferencer and decoder
+    # pre_train_weight_decoder = torch.load(os.path.expanduser(
+    #     '~/CompositeSkill/CompositeSkill/skill_prior/maze/{0}/weight_decoder_checkpoint{1}.pt'.format(
+    #         args.prior_name, args.prior_checkpoint)),
+    #                                       map_location=device)
+    # pre_train_weight_decoder.device = device
 
-    pre_train_weight_inferencer = torch.load(os.path.expanduser(
-        '~/CompositeSkill/CompositeSkill/skill_prior/maze/{0}/weight_inferencer_checkpoint{1}.pt'.format(
-            args.prior_name, args.prior_checkpoint)),
-                                             map_location=device)
-    pre_train_weight_inferencer.device = device
+    # pre_train_weight_inferencer = torch.load(os.path.expanduser(
+    #     '~/CompositeSkill/CompositeSkill/skill_prior/maze/{0}/weight_inferencer_checkpoint{1}.pt'.format(
+    #         args.prior_name, args.prior_checkpoint)),
+    #                                          map_location=device)
+    # pre_train_weight_inferencer.device = device
 
     for p in action_decoder.parameters():
         p.requires_grad = False

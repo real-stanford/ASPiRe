@@ -1,6 +1,6 @@
 import argparse
 import torch
-from ASPiRe.model import SkillPrior, skill
+from ASPiRe.modules.network import SkillPrior, skill
 import numpy as np
 import wandb
 import pickle
@@ -31,16 +31,12 @@ def main():
     parser.add_argument('--iteration', type=int, default=int(5000))
     parser.add_argument('--lr', type=float, default=1e-4)
     parser.add_argument('--theta', type=float, default=1)
-    parser.add_argument('--batch_size', type=int, default=256)
+    parser.add_argument('--batch_size', type=int, default=64)
     parser.add_argument('--past_frame', type=int, default=1)
-    parser.add_argument('--img_enc_hidden_dim', type=int, default=256)
-    parser.add_argument('--image_input_dim', type=int, default=64)
     parser.add_argument('--prior_coef', type=float, default=1)
-    parser.add_argument('--precision_scaling', type=float, default=200)
-    parser.add_argument('--temperature', type=float, default=0.1)
     parser.add_argument('--rec_coef', type=float, default=1)
     parser.add_argument('--kl_analytic', action='store_true')
-    parser.add_argument('--freeze_Z', default=1, type=int)
+    parser.add_argument('--freeze_Z', default=1000, type=int)
     parser.add_argument('--use_batch_norm', action='store_true')
     parser.add_argument('--name', type=str)
     parser.add_argument('--save_freq', type=int, default=100)
@@ -50,7 +46,7 @@ def main():
 
         print("using:", device)
 
-    save_path = os.path.expanduser(os.path.join('~/CompositeSkill/skill_prior', 'maze', args.name))
+    save_path = os.path.expanduser(os.path.join('~/ASPiRe/skill_prior', 'maze', args.name))
     os.makedirs(save_path, exist_ok=True)
 
     iteration = args.iteration

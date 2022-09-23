@@ -2,7 +2,7 @@ from typing import Any, Dict, List, Optional, Tuple, Type, Union, NamedTuple
 
 import numpy as np
 import gym
-from CompositeSkill.rl.utility.helper import AttrDict
+from ASPiRe.rl.utility.helper import AttrDict
 
 
 class ReplayBufferSamples(NamedTuple):
