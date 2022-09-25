@@ -1,0 +1,25 @@
+name: aspire
+channels:
+- defaults
+- conda-forge
+dependencies:
+- python=3.8
+- pip
+- patchelf
+- pip:
+    - -f https://download.pytorch.org/whl/torch_stable.html
+    - numpy
+    - gym==0.18.0
+    - mujoco-py==2.0.2.13
+    - matplotlib==3.3.4
+    - torch==1.9.1+cu111
+    - typed-argument-parser
+    - git+https://github.com/mengdaxu/d4rl-1.git
+    - scikit-image==0.17.2
+    - scikit-video==1.1.11
+    - gitpython
+    - pillow
+    - tqdm
+    - pandas
+    - wandb
+

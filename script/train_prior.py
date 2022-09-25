@@ -16,11 +16,11 @@ def main():
     parser.add_argument('--d1',
                         type=str,
                         help='path to dataset',
-                        default='/local/crv/mengda/aspire/maze2d-medium-dynamic-layout')
+                        default=None)
     parser.add_argument('--d2',
                         type=str,
                         help='path to dataset',
-                        default='/local/crv/mengda/aspire/matrix_maze_avoid')
+                        default=None)
     parser.add_argument('-k', type=float, default=0.01, help='kl coef')
     parser.add_argument('-latent_dim', type=int, default=10, help='latent_dim')
     parser.add_argument('-H_dim', type=int, default=10, help='H_dim')

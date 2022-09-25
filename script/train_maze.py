@@ -103,18 +103,6 @@ def main():
     action_decoder = action_decoder.to(device)
     action_decoder.eval()
 
-    # #load pre-train weight inferencer and decoder
-    # pre_train_weight_decoder = torch.load(os.path.expanduser(
-    #     '~/CompositeSkill/CompositeSkill/skill_prior/maze/{0}/weight_decoder_checkpoint{1}.pt'.format(
-    #         args.prior_name, args.prior_checkpoint)),
-    #                                       map_location=device)
-    # pre_train_weight_decoder.device = device
-
-    # pre_train_weight_inferencer = torch.load(os.path.expanduser(
-    #     '~/CompositeSkill/CompositeSkill/skill_prior/maze/{0}/weight_inferencer_checkpoint{1}.pt'.format(
-    #         args.prior_name, args.prior_checkpoint)),
-    #                                          map_location=device)
-    # pre_train_weight_inferencer.device = device
 
     for p in action_decoder.parameters():
         p.requires_grad = False
