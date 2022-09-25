@@ -442,8 +442,10 @@ class CompositeSAC():
         return values, info
 
     def update_weight_decoder(self, experience_replay: ReplayBufferSamples, priors_output: PriorOuput):
-        weights = torch.softmax(torch.rand(priors_output.param.shape[0], self.n_priors, device=self.device) / 0.3,
-                                dim=-1)
+        # weights = torch.softmax(torch.rand(priors_output.param.shape[0], self.n_priors, device=self.device) / 0.3,
+        #                         dim=-1)
+        weights = torch.rand(priors_output.param.shape[0], self.n_priors, device=self.device)
+
 
         check_shape(weights, [self.batch_size, self.n_priors])
         decoder_output = self.weight_decoder(weights, priors_output.param)
