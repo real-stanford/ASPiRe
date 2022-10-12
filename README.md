@@ -1,6 +1,7 @@
 # ASPiRe
 
 [Mengda Xu](https://www.cs.columbia.edu/~shurans/)
+[Manuela Veloso](http://www.cs.cmu.edu/~mmv/)
 [Shuran Song](https://www.cs.columbia.edu/~shurans/)
 <br>
 Columbia University
@@ -64,7 +65,14 @@ A directory will be created at `Experiment/EXP_NAME`, in which checkpoints will 
 ## BibTeX
 
 ```
-
+@inproceedings{
+anonymous2022aspire,
+title={{ASP}iRe: Adaptive Skill Priors for  Reinforcement Learning},
+author={Anonymous},
+booktitle={Thirty-Sixth Conference on Neural Information Processing Systems},
+year={2022},
+url={https://openreview.net/forum?id=sr0289wAUa}
+}
 ```
 
 ## License
