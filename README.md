@@ -37,8 +37,8 @@ pip install -e .
 
 We provide the data for learning the skill priors for point maze.
 
-- [navigation_dataset](https://drive.google.com/file/d/1VP0nsQqCGE0H-6e5dTVgesL0Ua4ZsTt1/view?usp=sharing): The point mass agent navigates in medium size mazes.
-- [avoid_dataset](https://drive.google.com/file/d/1ND2rmKYirsH4XHnsJNW7ks_tkdc6ywxl/view?usp=sharing): The point mass agent avoids the obstacale in front.
+- [navigation_dataset](https://drive.google.com/file/d/1sbAWwca32OQwpa1WxGLhrH3gRl4Cc-hx/view?usp=sharing): The point mass agent navigates in medium size mazes.
+- [avoid_dataset](https://drive.google.com/file/d/1O-HFBwzSk-sd46-PF08O49mtww5wCuZM/view?usp=sharing): The point mass agent avoids the obstacale in front.
 
 ## Training
 
